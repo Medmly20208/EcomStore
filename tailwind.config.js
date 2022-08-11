@@ -2,7 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      MyFont: ["Public Sans"],
+    },
+    extend: {
+      colors: {
+        "customized-orange": "#e65100",
+      },
+    },
   },
   plugins: [],
 };
