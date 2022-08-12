@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      sm: { max: "639px" }, //hidden components
+      sx: { min: "639px" }, //display components
+    },
     fontFamily: {
       MyFont: ["Public Sans"],
     },
