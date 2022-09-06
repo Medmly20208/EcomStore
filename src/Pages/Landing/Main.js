@@ -96,7 +96,7 @@ const Main = () => {
       {Products === null ? (
         <></>
       ) : (
-        <div className="w-[100vw]  ">
+        <div className="w-[100vw] max-w-[100%] overflow-hidden">
           <Slider {...settings}>
             {Products.map((Product, index) => {
               return (
