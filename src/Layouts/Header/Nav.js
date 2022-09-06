@@ -8,8 +8,8 @@ const Nav = () => {
     <nav>
       <ul className="flex flex-row justify-center align-center gap-5 sm:hidden">
         <li className={CommonNavStyle}>Home</li>
-        <li className={CommonNavStyle}>Women</li>
         <li className={CommonNavStyle}>Men</li>
+        <li className={CommonNavStyle}>Women</li>
         <li className={CommonNavStyle}>Kids</li>
       </ul>
     </nav>
