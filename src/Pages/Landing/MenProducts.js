@@ -136,21 +136,23 @@ const MenProducts = () => {
     <div className="m-12">
       <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">MEN PRODUCTS</h1>
       {MenProducts !== null ? (
-        <Slider {...settings}>
-          {MenProducts.map((Product, index) => {
-            return (
-              <div key={index} className="!flex justify-center items-center">
-                <ProductItem
-                  Id={Product.id}
-                  Src={Product.productImage}
-                  Name={Product.productName}
-                  Details={Product.productDetails}
-                  Price={Product.productPrice}
-                />
-              </div>
-            );
-          })}
-        </Slider>
+        <div className="max-w-[100%]">
+          <Slider {...settings}>
+            {MenProducts.map((Product, index) => {
+              return (
+                <div key={index} className="!flex justify-center items-center">
+                  <ProductItem
+                    Id={Product.id}
+                    Src={Product.productImage}
+                    Name={Product.productName}
+                    Details={Product.productDetails}
+                    Price={Product.productPrice}
+                  />
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
       ) : (
         <></>
       )}
