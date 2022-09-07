@@ -1,9 +1,12 @@
 import React from "react";
+
+//components
 import Header from "../../Layouts/Header";
 import Main from "./Main";
 import MenProducts from "./MenProducts";
 import WomenProducts from "./WomenProducts";
 import KidsProducts from "./KidsProducts";
+import Stores from "./Stores";
 
 const index = () => {
   return (
@@ -13,6 +16,7 @@ const index = () => {
       <MenProducts />
       <WomenProducts />
       <KidsProducts />
+      <Stores />
     </>
   );
 };
