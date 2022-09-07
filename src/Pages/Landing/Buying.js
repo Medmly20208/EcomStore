@@ -56,7 +56,7 @@ const Buying = () => {
   return productDetails === null ? (
     <></>
   ) : (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="w-screen h-fit max-w-[100%] flex flex-col justify-center items-center p-6">
       <CheckOutForm productDetails={productDetails}></CheckOutForm>
     </div>
   );
