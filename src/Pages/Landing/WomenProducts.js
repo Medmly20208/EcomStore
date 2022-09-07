@@ -5,24 +5,20 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-//Iconify
-import { Icon } from "@iconify/react";
-
 //firebase
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 //componnets
 import ProductItem from "./ProductItem";
-
 const css = `
-    #special:before {
-        color: #3F54C2 !important;
-    }
+#special:before {
+    color: #3F54C2 !important;
+}
 `;
-
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
+
   return (
     <>
       <div
@@ -60,7 +56,7 @@ function SampleNextArrow(props) {
     </div>
   );
 }
-const MenProducts = () => {
+const WomenProducts = () => {
   //slider settings
   const settings = {
     dots: false,
@@ -80,7 +76,6 @@ const MenProducts = () => {
           slidesToScroll: 1,
         },
       },
-
       {
         breakpoint: 990,
         settings: {
@@ -117,7 +112,7 @@ const MenProducts = () => {
   let StoreDataBase = getFirestore();
 
   //collection ref
-  let ProductsCollection = collection(StoreDataBase, "MenProducts");
+  let ProductsCollection = collection(StoreDataBase, "WomenProducts");
 
   const fetchProducts = async () => {
     getDocs(ProductsCollection).then((snapshot) => {
@@ -134,13 +129,14 @@ const MenProducts = () => {
   }, []);
   return (
     <div className="m-12">
-      <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">MEN PRODUCTS</h1>
+      <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">WOMEN PRODUCTS</h1>
       {MenProducts !== null ? (
         <Slider {...settings}>
           {MenProducts.map((Product, index) => {
             return (
               <div key={index} className="!flex justify-center items-center">
                 <ProductItem
+                  key={index}
                   Id={Product.id}
                   Src={Product.productImage}
                   Name={Product.productName}
@@ -158,4 +154,4 @@ const MenProducts = () => {
   );
 };
 
-export default MenProducts;
+export default WomenProducts;

@@ -5,9 +5,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-//Iconify
-import { Icon } from "@iconify/react";
-
 //firebase
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
@@ -16,13 +13,13 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import ProductItem from "./ProductItem";
 
 const css = `
-    #special:before {
-        color: #3F54C2 !important;
-    }
+#special:before {
+    color: #3F54C2 !important;
+}
 `;
-
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
+
   return (
     <>
       <div
@@ -60,7 +57,7 @@ function SampleNextArrow(props) {
     </div>
   );
 }
-const MenProducts = () => {
+const KidsProducts = () => {
   //slider settings
   const settings = {
     dots: false,
@@ -69,6 +66,7 @@ const MenProducts = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+
     initialSlide: 2,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -80,7 +78,6 @@ const MenProducts = () => {
           slidesToScroll: 1,
         },
       },
-
       {
         breakpoint: 990,
         settings: {
@@ -98,7 +95,7 @@ const MenProducts = () => {
     ],
   };
 
-  const [MenProducts, setMenProducts] = useState(null);
+  const [KidsProducts, setKidsProducts] = useState(null);
   const firebaseConfig = {
     apiKey: "AIzaSyB8kg_O4JjDBxyb6fEnYCBR3VbmgiZfrRw",
     authDomain: "ecomstoer.firebaseapp.com",
@@ -117,7 +114,7 @@ const MenProducts = () => {
   let StoreDataBase = getFirestore();
 
   //collection ref
-  let ProductsCollection = collection(StoreDataBase, "MenProducts");
+  let ProductsCollection = collection(StoreDataBase, "KidsProducts");
 
   const fetchProducts = async () => {
     getDocs(ProductsCollection).then((snapshot) => {
@@ -125,7 +122,7 @@ const MenProducts = () => {
       snapshot.docs.forEach((doc) => {
         FetchedProducts.push({ ...doc.data(), id: doc.id });
       });
-      setMenProducts(FetchedProducts);
+      setKidsProducts(FetchedProducts);
     });
   };
 
@@ -134,13 +131,14 @@ const MenProducts = () => {
   }, []);
   return (
     <div className="m-12">
-      <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">MEN PRODUCTS</h1>
-      {MenProducts !== null ? (
+      <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">KIDS PRODUCTS</h1>
+      {KidsProducts !== null ? (
         <Slider {...settings}>
-          {MenProducts.map((Product, index) => {
+          {KidsProducts.map((Product, index) => {
             return (
               <div key={index} className="!flex justify-center items-center">
                 <ProductItem
+                  key={index}
                   Id={Product.id}
                   Src={Product.productImage}
                   Name={Product.productName}
@@ -158,4 +156,4 @@ const MenProducts = () => {
   );
 };
 
-export default MenProducts;
+export default KidsProducts;

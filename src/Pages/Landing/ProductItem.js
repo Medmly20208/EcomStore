@@ -11,7 +11,7 @@ const ProductItem = (props) => {
 
   return (
     <div
-      className="w-72  bg-[#ececec] p-4 border-2 rounded-3xl cursor-pointer"
+      className="w-72 sm:w-[90%]   h-[347px] bg-[#ececec] p-4 border-2 rounded-3xl cursor-pointer"
       onClick={BuyingProductHandler}
     >
       <div className="grid place-items-center">
