@@ -3,6 +3,7 @@ import "./App.css";
 import Landing from "./Pages/Landing";
 import Buying from "./Pages/Landing/Buying";
 import Login from "./Pages/Auth/Login";
+import SignUp from "./Pages/Auth/SignUp";
 
 //Router
 import { Routes, Route } from "react-router-dom";
@@ -13,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/Products/:productId" element={<Buying />} />
-        <Route path="/Auth" element={<Login />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<SignUp />} />
       </Routes>
     </>
   );

@@ -10,7 +10,7 @@ const ProductItem = (props) => {
   };
 
   const CartHandler = () => {
-    navigate("/Auth");
+    navigate("/Login");
   };
   return (
     <div className="w-72 sm:w-[90%]   h-[347px] bg-[#ececec] p-4 border-2 rounded-3xl cursor-pointer">
