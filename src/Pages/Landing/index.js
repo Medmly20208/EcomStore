@@ -8,7 +8,7 @@ import WomenProducts from "./WomenProducts";
 import KidsProducts from "./KidsProducts";
 import Stores from "./Stores";
 
-const index = () => {
+const Index = () => {
   return (
     <>
       <Header />
@@ -21,4 +21,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

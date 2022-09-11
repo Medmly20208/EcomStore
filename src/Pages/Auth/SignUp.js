@@ -2,10 +2,14 @@ import { async } from "@firebase/util";
 import React, { useRef, useState } from "react";
 
 //link
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
+//components
+import Iconify from "../../Components/Iconify";
+
 const SignUp = () => {
+  const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
@@ -23,9 +27,13 @@ const SignUp = () => {
     try {
       setIsLoading(true);
       setError("");
-      await signup(emailRef.current.value, passwordRef.current.value);
-    } catch {
-      setError("Failed To Create an Account");
+      await signup(emailRef.current.value, passwordRef.current.value).then(
+        () => {
+          navigate("/");
+        }
+      );
+    } catch (err) {
+      setError(err.message.split("/")[1].slice(0, -2));
     }
     setIsLoading(false);
   };
@@ -109,7 +117,16 @@ const SignUp = () => {
                   className="w-full text-center bg-[#474554] text-white p-3 font-bold"
                   disabled={isloading}
                 >
-                  Create an Account
+                  {isloading ? (
+                    <div className="flex justify-center items-center">
+                      <Iconify
+                        icon={"eos-icons:loading"}
+                        style={{ fontSize: "25px" }}
+                      />
+                    </div>
+                  ) : (
+                    "Create Account"
+                  )}
                 </button>
               </div>
               <p>

@@ -1,30 +1,29 @@
 import React, { useState, useRef } from "react";
 
-//components
-import Iconify from "../../Components/Iconify";
-
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../Context/AuthContext";
 
+//components
+import Iconify from "../../Components/Iconify";
+
 const Login = () => {
-  const { login } = useAuth();
+  const { resetPassword } = useAuth();
   const emailRef = useRef();
-  const passwordRef = useRef();
+
   const navigate = useNavigate();
   const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const LoginHandler = async (event) => {
+  const ForegtPasswordHandler = async (event) => {
     event.preventDefault();
 
     try {
       setIsLoading(true);
       setError("");
-      await login(emailRef.current.value, passwordRef.current.value).then(
-        () => {
-          navigate("/");
-        }
+      await resetPassword(emailRef.current.value).then(() =>
+        setSuccessMessage("checkout your inbox")
       );
     } catch (err) {
       setError(err.message.split("/")[1].slice(0, -2));
@@ -35,18 +34,14 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen w-screen">
       <div className="h-full w-full flex flex-col justify-center items-center gap-8">
-        <h1 className="w-[90%] lg:w-[40%] text-left mb-6 text-3xl font-bold text-[#474554]">
-          Sneakers Store
-        </h1>
-
         <div className="flex justify-center items-center border shadow-custom w-[90%] h-[70%] font-MyFont lg:w-[40%] md:h-[80%]">
           <div className="w-[80%] flex flex-col h-full ">
             <form
-              className="flex flex-col justify-evenly h-full"
-              onSubmit={LoginHandler}
+              className="flex flex-col justify-center gap-8 h-full"
+              onSubmit={ForegtPasswordHandler}
             >
               <h1 className="font-bold text-3xl text-[#383838]">
-                Connect To Your Account
+                Password Reset
               </h1>
               {error !== "" ? (
                 <div className="w-full p-4 bg-red-300 text-red-900">
@@ -55,6 +50,17 @@ const Login = () => {
               ) : (
                 <></>
               )}
+              {successMessage !== "" ? (
+                <div className="w-full p-4 bg-green-300 text-green-900">
+                  {successMessage}
+                </div>
+              ) : (
+                <></>
+              )}
+              <p className="font-bold">
+                Enter the email address associated with your account and we'll
+                send you a link to reset your password.
+              </p>
               <div className="flex flex-col gap-5">
                 <label
                   htmlFor="email"
@@ -68,29 +74,6 @@ const Login = () => {
                   type={"text"}
                   className="w-full h-[40px] p-4  outline-cyan-700 border border-black"
                   ref={emailRef}
-                />
-              </div>
-              <div className="flex flex-col gap-5">
-                <div className="flex justify-between">
-                  <label
-                    htmlFor="password"
-                    className="font-bold text-1xl text-[rgb(26,31,54)] "
-                  >
-                    Password:
-                  </label>
-
-                  <button
-                    className="text-[#383838] font-bold"
-                    onClick={() => navigate("/ForgetPassword")}
-                  >
-                    Forget Password?
-                  </button>
-                </div>
-                <input
-                  id="password"
-                  type={"password"}
-                  className="w-full h-[40px] p-4 outline-cyan-700 border border-black"
-                  ref={passwordRef}
                 />
               </div>
 
@@ -107,16 +90,13 @@ const Login = () => {
                       />
                     </div>
                   ) : (
-                    "Connect"
+                    "Send Email"
                   )}
                 </button>
               </div>
               <p>
-                Don't have an account?
                 <span className="ml-4 text-[#009298] h-6 font-bold hover:text-[#06575a]">
-                  <Link to={"/Register"} replace>
-                    Sign up
-                  </Link>
+                  <Link to={"/LogIn"}>Return To Sign In ?</Link>
                 </span>
               </p>
             </form>

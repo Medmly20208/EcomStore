@@ -4,6 +4,9 @@ import Landing from "./Pages/Landing";
 import Buying from "./Pages/Landing/Buying";
 import Login from "./Pages/Auth/Login";
 import SignUp from "./Pages/Auth/SignUp";
+import ForgetPassword from "./Pages/Auth/ForgetPassword";
+
+//authcontext
 import AuthProvider from "./Context/AuthContext";
 
 //Router
@@ -17,6 +20,7 @@ function App() {
         <Route path="/Products/:productId" element={<Buying />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<SignUp />} />
+        <Route path="/ForgetPassword" element={<ForgetPassword />} />
       </Routes>
     </AuthProvider>
   );

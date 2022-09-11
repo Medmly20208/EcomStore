@@ -2,15 +2,22 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
+//auth context
+import { useAuth } from "../../Context/AuthContext";
+
 const ProductItem = (props) => {
   let navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const BuyingProductHandler = () => {
     navigate(`/Products/${props.Id}`);
   };
 
   const CartHandler = () => {
-    navigate("/Login");
+    if (currentUser == undefined) {
+      return navigate("/Login");
+    }
+    return navigate(`/Products/${props.Id}`);
   };
   return (
     <div className="w-72 sm:w-[90%]   h-[347px] bg-[#ececec] p-4 border-2 rounded-3xl cursor-pointer">
