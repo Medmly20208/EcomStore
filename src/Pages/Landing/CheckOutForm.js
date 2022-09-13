@@ -8,8 +8,7 @@ import MasterCard from "../../Assets/Images/MasterCard.jpg";
 //react router
 import { useNavigate } from "react-router-dom";
 
-const CheckOutForm = (props) => {
-  const [numberOfItems, setNumberOfItems] = useState(1);
+const CheckOutForm = () => {
   const navigate = useNavigate();
 
   const FormSubmitHandler = (event) => {
@@ -93,73 +92,9 @@ const CheckOutForm = (props) => {
             className="border border-gray-300  w-full  p-2 rounded-xl lg:w-[50%] "
           ></input>
         </div>
-        <div>
-          <fieldset>
-            <legend className="font-bold text-gray-700">Choose Color</legend>
-            <div className="flex gap-4 mt-4 mb-4">
-              {props.productDetails.productColor.map((color, index) => {
-                return (
-                  <div key={index} className="flex justify-center gap-2">
-                    <input
-                      type="radio"
-                      id={color}
-                      name="selectedColor"
-                      value={color}
-                    />
-                    <label htmlFor={color}>{color}</label>
-                  </div>
-                );
-              })}
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend className="font-bold text-gray-700">Choose Size</legend>
-            <div className="flex gap-4 mt-4 mb-4">
-              {props.productDetails.productSize.map((Size, index) => {
-                return (
-                  <div key={index} className="flex justify-center gap-2">
-                    <input
-                      type="radio"
-                      id={Size}
-                      name="selectedSize"
-                      value={Size}
-                    />
-                    <label htmlFor={Size}>{Size}</label>
-                  </div>
-                );
-              })}
-            </div>
-          </fieldset>
-        </div>
+        <div></div>
         <div className="flex justify-between flex-wrap gap-4">
           <div>
-            <h1 className="font-bold text-gray-700 mb-3">Amount</h1>
-            <div className="h-fit bg-[#00E676] flex justify-center items-center gap-2 border rounded-lg p-2">
-              <div
-                className=" text-[#00677E] w-6 h-4 flex justify-center items-center font-bold cursor-pointer"
-                onClick={() =>
-                  setNumberOfItems((prev) => (prev === 0 ? 0 : prev - 1))
-                }
-              >
-                -
-              </div>
-              <div className="w-8 text-center text-[#2F4858] font-bold">
-                {numberOfItems}
-              </div>
-
-              <div
-                onClick={() => setNumberOfItems((prev) => prev + 1)}
-                className="text-[#00677E] w-6 h-4 flex justify-center items-center font-bold cursor-pointer"
-              >
-                +
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between bg-gray-200 mb-4 p-2 font-bold text-gray-600">
-              <h1>Total Amount</h1>
-              <h1>{props.productDetails.productPrice * numberOfItems}$</h1>
-            </div>
             <button className="bg-[#00e676] w-full text-white pt-4 pb-4 pl-8 pr-8 hover:bg-[#1b5e20] font-bold border rounded-xl">
               Confirm Payment
             </button>

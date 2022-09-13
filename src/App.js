@@ -17,7 +17,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/Products/:productId" element={<Buying />} />
+        <Route path="/CheckoutForm" element={<Buying />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<SignUp />} />
         <Route path="/ForgetPassword" element={<ForgetPassword />} />

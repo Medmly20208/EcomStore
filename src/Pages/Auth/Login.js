@@ -27,7 +27,7 @@ const Login = () => {
         }
       );
     } catch (err) {
-      setError(err.message.split("/")[1].slice(0, -2));
+      setError(err.message);
     }
     setIsLoading(false);
   };

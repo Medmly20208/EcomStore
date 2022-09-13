@@ -4,7 +4,7 @@ import React from "react";
 import { useAuth } from "../../Context/AuthContext";
 
 export default function PopOverContent() {
-  const { signout } = useAuth();
+  const { signout, currentUser } = useAuth();
 
   const signoutHanlder = async () => {
     try {
@@ -28,6 +28,7 @@ export default function PopOverContent() {
             Settings
           </li>
         </div>
+
         <li
           className="p-2   w-full text-gray-500 cursor-pointer font-MyFont font-bold hover:bg-gray-100 rounded-lg"
           onClick={signoutHanlder}

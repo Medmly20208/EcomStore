@@ -39,25 +39,9 @@ const Buying = () => {
 
   //collection ref
 
-  const fetchProductById = async () => {
-    const docRef = doc(StoreDataBase, "MenProducts", productId);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setProductDetails(docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  };
-  useEffect(() => {
-    fetchProductById();
-  }, []);
-
-  return productDetails === null ? (
-    <></>
-  ) : (
+  return (
     <div className="w-screen h-fit max-w-[100%] flex flex-col justify-center items-center p-6">
-      <CheckOutForm productDetails={productDetails}></CheckOutForm>
+      <CheckOutForm></CheckOutForm>
     </div>
   );
 };

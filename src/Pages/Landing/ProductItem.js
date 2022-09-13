@@ -7,7 +7,7 @@ import { useAuth } from "../../Context/AuthContext";
 
 const ProductItem = (props) => {
   let navigate = useNavigate();
-  const { currentUser } = useAuth();
+  const { currentUser, AddToCart } = useAuth();
 
   const BuyingProductHandler = () => {
     navigate(`/Products/${props.Id}`);
@@ -17,8 +17,15 @@ const ProductItem = (props) => {
     if (currentUser == undefined) {
       return navigate("/Login");
     }
-    return navigate(`/Products/${props.Id}`);
+    return AddToCart({
+      id: currentUser.uid,
+      productName: props.Name,
+      productImage: props.Src,
+      productPrice: props.Price,
+      amount: 1,
+    });
   };
+
   return (
     <div className="w-72 sm:w-[90%]   h-[347px] bg-[#ececec] p-4 border-2 rounded-3xl cursor-pointer">
       <div className="grid place-items-center">

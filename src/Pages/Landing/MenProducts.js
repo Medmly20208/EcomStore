@@ -60,6 +60,7 @@ function SampleNextArrow(props) {
     </div>
   );
 }
+let StoreDataBase = getFirestore();
 const MenProducts = () => {
   //slider settings
   const settings = {
@@ -101,7 +102,6 @@ const MenProducts = () => {
   const [MenProducts, setMenProducts] = useState(null);
 
   //init store
-  let StoreDataBase = getFirestore();
 
   //collection ref
   let ProductsCollection = collection(StoreDataBase, "MenProducts");

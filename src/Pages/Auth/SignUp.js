@@ -1,5 +1,5 @@
 import { async } from "@firebase/util";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 //link
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,9 @@ import { useAuth } from "../../Context/AuthContext";
 
 //components
 import Iconify from "../../Components/Iconify";
+
+//fireBase DB
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -16,7 +19,7 @@ const SignUp = () => {
   const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const { signup } = useAuth();
+  const { signup, currentUser, CreateCart } = useAuth();
 
   const SubmitHandler = async (event) => {
     event.preventDefault();
@@ -25,15 +28,14 @@ const SignUp = () => {
       return setError("Passwords doesn't match");
     }
     try {
-      setIsLoading(true);
       setError("");
-      await signup(emailRef.current.value, passwordRef.current.value).then(
-        () => {
-          navigate("/");
-        }
-      );
+      setIsLoading(true);
+
+      await signup(emailRef.current.value, passwordRef.current.value);
+
+      navigate("/");
     } catch (err) {
-      setError(err.message.split("/")[1].slice(0, -2));
+      setError(err.message);
     }
     setIsLoading(false);
   };
