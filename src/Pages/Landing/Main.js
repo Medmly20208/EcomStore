@@ -5,6 +5,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+//Compoenents
+import Iconify from "../../Components/Iconify";
+
 //firebase
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
@@ -78,9 +81,11 @@ const Main = () => {
     fetchProducts();
   }, []);
   return (
-    <div>
+    <div id="Home">
       {Products === null ? (
-        <></>
+        <div className="flex w-full justify-center items-center">
+          <Iconify icon={"eos-icons:loading"} style={{ fontSize: "100px" }} />
+        </div>
       ) : (
         <div className="w-[100vw] max-w-[100%] overflow-hidden">
           <Slider {...settings}>

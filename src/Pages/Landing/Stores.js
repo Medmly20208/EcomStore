@@ -121,7 +121,7 @@ const Stores = () => {
   ];
 
   return (
-    <div className="m-12">
+    <div className="m-12" id="Stores">
       <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">OUR STORES</h1>
 
       <Slider {...settings}>

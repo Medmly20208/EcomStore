@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 //Iconify
-import { Icon } from "@iconify/react";
+import Iconify from "../../Components/Iconify";
 
 //firebase
 import { initializeApp } from "firebase/app";
@@ -120,29 +120,38 @@ const MenProducts = () => {
     fetchProducts();
   }, []);
   return (
-    <div className="m-12">
-      <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">MEN PRODUCTS</h1>
-      {MenProducts !== null ? (
-        <div className="max-w-[100%]">
-          <Slider {...settings}>
-            {MenProducts.map((Product, index) => {
-              return (
-                <div key={index} className="!flex justify-center items-center">
-                  <ProductItem
-                    Id={Product.id}
-                    Src={Product.productImage}
-                    Name={Product.productName}
-                    Details={Product.productDetails}
-                    Price={Product.productPrice}
-                  />
-                </div>
-              );
-            })}
-          </Slider>
-        </div>
-      ) : (
-        <></>
-      )}
+    <div id="Men" className="pt-[100px]">
+      <div className="m-12 mt-8">
+        <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl  ">
+          MEN PRODUCTS
+        </h1>
+        {MenProducts !== null ? (
+          <div className="max-w-[100%]">
+            <Slider {...settings}>
+              {MenProducts.map((Product, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="!flex justify-center items-center"
+                  >
+                    <ProductItem
+                      Id={Product.id}
+                      Src={Product.productImage}
+                      Name={Product.productName}
+                      Details={Product.productDetails}
+                      Price={Product.productPrice}
+                    />
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+        ) : (
+          <div className="flex w-full justify-center items-center">
+            <Iconify icon={"eos-icons:loading"} style={{ fontSize: "100px" }} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

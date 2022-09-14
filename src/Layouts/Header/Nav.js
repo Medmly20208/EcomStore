@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Nav = () => {
   const CommonNavStyle =
@@ -7,10 +7,21 @@ const Nav = () => {
   return (
     <nav>
       <ul className="flex flex-row justify-center align-center gap-5 sm:hidden">
-        <li className={CommonNavStyle}>Home</li>
-        <li className={CommonNavStyle}>Men</li>
-        <li className={CommonNavStyle}>Women</li>
-        <li className={CommonNavStyle}>Kids</li>
+        <li className={CommonNavStyle}>
+          <a href="#Home">Home</a>
+        </li>
+        <li className={CommonNavStyle}>
+          <a href="#Men">Men</a>
+        </li>
+        <li className={CommonNavStyle}>
+          <a href="#Women">Women</a>
+        </li>
+        <li className={CommonNavStyle}>
+          <a href="#Kids">Kids</a>
+        </li>
+        <li className={CommonNavStyle}>
+          <a href="#Stores">Stores</a>
+        </li>
       </ul>
     </nav>
   );

@@ -11,6 +11,8 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 //componnets
 import ProductItem from "./ProductItem";
+import Iconify from "../../Components/Iconify";
+
 const css = `
 #special:before {
     color: #3F54C2 !important;
@@ -115,28 +117,34 @@ const WomenProducts = () => {
     fetchProducts();
   }, []);
   return (
-    <div className="m-12">
-      <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">WOMEN PRODUCTS</h1>
-      {MenProducts !== null ? (
-        <Slider {...settings}>
-          {MenProducts.map((Product, index) => {
-            return (
-              <div key={index} className="!flex justify-center items-center">
-                <ProductItem
-                  key={index}
-                  Id={Product.id}
-                  Src={Product.productImage}
-                  Name={Product.productName}
-                  Details={Product.productDetails}
-                  Price={Product.productPrice}
-                />
-              </div>
-            );
-          })}
-        </Slider>
-      ) : (
-        <></>
-      )}
+    <div id="Women" className="pt-[100px]">
+      <div className="m-12">
+        <h1 className="m-4 font-bold text-[#3e3e3e] text-3xl">
+          WOMEN PRODUCTS
+        </h1>
+        {MenProducts !== null ? (
+          <Slider {...settings}>
+            {MenProducts.map((Product, index) => {
+              return (
+                <div key={index} className="!flex justify-center items-center">
+                  <ProductItem
+                    key={index}
+                    Id={Product.id}
+                    Src={Product.productImage}
+                    Name={Product.productName}
+                    Details={Product.productDetails}
+                    Price={Product.productPrice}
+                  />
+                </div>
+              );
+            })}
+          </Slider>
+        ) : (
+          <div className="flex w-full justify-center items-center">
+            <Iconify icon={"eos-icons:loading"} style={{ fontSize: "100px" }} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -8,9 +8,12 @@ import CartDetails from "./CartDetails";
 
 //auth context
 import { useAuth } from "../../Context/AuthContext";
-import { async } from "@firebase/util";
+
+//react router
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const navigate = useNavigate();
   const { currentUser, fetchCart, CartProducts } = useAuth();
   const [Products, setProducts] = useState([]);
   const [displayCartDetails, setDisplayCartDetails] = useState(false);
@@ -26,6 +29,14 @@ const Settings = () => {
 
   return (
     <>
+      {currentUser === null && (
+        <button
+          onClick={() => navigate("/LogIn")}
+          className="text-white bg-[#2A272A] font-MyFont p-2 border rounded-lg"
+        >
+          Login
+        </button>
+      )}
       {displayCartDetails && (
         <CartDetails
           CartProducts={CartProducts}
@@ -51,11 +62,6 @@ const Settings = () => {
         )}
 
         <div className="flex sm:hidden">
-          <Iconify
-            icon="ant-design:search-outlined"
-            style={{ color: "white", fontSize: "30px", cursor: "pointer" }}
-          ></Iconify>
-
           {currentUser !== null ? (
             <>
               <div className="relative">
