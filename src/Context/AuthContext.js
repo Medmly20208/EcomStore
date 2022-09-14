@@ -37,14 +37,14 @@ const AuthProvider = ({ children }) => {
   const updateCartItem = async (operation, ProductName) => {
     let Products = [];
 
-    const ProductRef = doc(StoreDataBase, "Cart", "X8RQaPtoh36m75E2TejH");
+    const ProductRef = doc(StoreDataBase, "Cart", currentUser.uid);
 
     const docSnap = await getDoc(ProductRef);
 
     if (docSnap.exists()) {
       Products = docSnap.data().CartProducts;
     } else {
-      console.log("No such document!");
+      return;
     }
 
     Products.forEach((Product) => {
@@ -71,20 +71,18 @@ const AuthProvider = ({ children }) => {
   const deleteFromCart = async (productName) => {
     let Products = [];
 
-    const ProductRef = doc(StoreDataBase, "Cart", "X8RQaPtoh36m75E2TejH");
+    const ProductRef = doc(StoreDataBase, "Cart", currentUser.uid);
 
     const docSnap = await getDoc(ProductRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       Products = docSnap.data().CartProducts;
     } else {
-      console.log("No such document!");
+      return;
     }
 
     Products = Products.filter((element) => {
       if (element.productName === productName) {
-        console.log();
         return false;
       }
       return true;
@@ -93,19 +91,18 @@ const AuthProvider = ({ children }) => {
     await setDoc(ProductRef, {
       CartProducts: Products,
     });
-    console.log(Products);
     setCartProducts(Products);
   };
   const fetchCart = async () => {
     let Products = [];
-    const ProductRef = doc(StoreDataBase, "Cart", "X8RQaPtoh36m75E2TejH");
+    const ProductRef = doc(StoreDataBase, "Cart", currentUser.uid);
 
     const docSnap = await getDoc(ProductRef);
 
     if (docSnap.exists()) {
       setCartProducts(docSnap.data().CartProducts);
     } else {
-      console.log("No such document!");
+      return;
     }
   };
 
@@ -116,16 +113,17 @@ const AuthProvider = ({ children }) => {
     amount,
   }) => {
     let Products = [];
-
-    const ProductRef = doc(StoreDataBase, "Cart", "X8RQaPtoh36m75E2TejH");
+    const ProductRef = doc(StoreDataBase, "Cart", currentUser.uid);
 
     const docSnap = await getDoc(ProductRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       Products = docSnap.data().CartProducts;
     } else {
-      console.log("No such document!");
+      await setDoc(doc(StoreDataBase, "Cart", currentUser.uid), {
+        id: currentUser.uid,
+        CartProduct: [],
+      });
     }
     let Found = false;
     Products.forEach((element) => {
