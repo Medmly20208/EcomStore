@@ -7,6 +7,7 @@ import MenProducts from "./MenProducts";
 import WomenProducts from "./WomenProducts";
 import KidsProducts from "./KidsProducts";
 import Stores from "./Stores";
+import Footer from "./Footer";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <WomenProducts />
       <KidsProducts />
       <Stores />
+      <Footer />
     </>
   );
 };
