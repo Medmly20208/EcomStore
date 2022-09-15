@@ -69,8 +69,13 @@ const CartDetails = (props) => {
           );
         })}
         {props.CartProducts.length !== 0 && (
-          <div className="sticky bottom-0 right-0 w-full text-right bg-[#8c8f95] text-white p-4 font-bold">
-            <button onClick={() => navigate("/CheckoutForm")}>Buy</button>
+          <div className="sticky bottom-0 right-0 w-full text-right bg-[#8c8f95] text-white p-4 font-bold flex justify-between">
+            <button
+              onClick={() => navigate("/CheckoutForm")}
+              className="text-white bg-[#2A272A] font-MyFont pl-8 pr-8 border rounded-lg"
+            >
+              Buy
+            </button>
             <h1>Total : ${Total.toFixed(2)}</h1>
           </div>
         )}
