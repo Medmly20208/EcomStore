@@ -1,4 +1,4 @@
-# CryptoCurrency Tracker landing page
+# Ecommerce store
 
 ### ecom store that has authentification,cart feature and more .
 
