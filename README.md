@@ -1,6 +1,6 @@
 # Ecommerce store
 
-### ecom store that has authentification,cart feature and more .
+### ecom store that has authentification,cart feature and more 
 
 
 
