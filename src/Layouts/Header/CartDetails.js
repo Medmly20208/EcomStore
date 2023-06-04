@@ -13,6 +13,9 @@ const CartDetails = (props) => {
   const DeletHandler = (ProductName) => {
     deleteFromCart(ProductName);
   };
+  
+  
+
 
   return (
     <>
@@ -20,7 +23,8 @@ const CartDetails = (props) => {
         className="fixed left-0 bottom-0 w-screen h-screen opacity-90 bg-black z-[200]"
         onClick={props.onClose}
       ></div>
-      <div className="fixed left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%] bg-white w-[70vw] h-[80vh] z-[300] overflow-y-scroll ">
+      <div className="fixed max-h-[80vh] left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%] bg-white w-[400px] h-fit z-[300] overflow-y-scroll ">
+        <h1 className="p-[20px] font-bold text-[20px]">Shopping Cart</h1>
         {props.CartProducts.map((Product, index) => {
           Total += Product.productPrice * Product.amount;
 
@@ -34,11 +38,11 @@ const CartDetails = (props) => {
                   <img
                     src={Product.productImage}
                     alt="sneaker"
-                    className="w-28 h-28 border rounded-full"
+                    className="w-[70px] h-[70px] border rounded-full"
                   />
                 </div>
                 <div>
-                  <h1 className="text-[30px]">{Product.productName}</h1>
+                  <h1 className="text-[18px]">{Product.productName}</h1>
                 </div>
               </div>
               <div>
@@ -57,7 +61,7 @@ const CartDetails = (props) => {
                 </div>
               </div>
               <div>
-                ${" " + (Product.amount * Product.productPrice).toFixed(2)}
+              Total: ${" " + (Product.amount * Product.productPrice).toFixed(2)}
               </div>
               <div
                 className="absolute top-2 right-2 cursor-pointer"
@@ -76,7 +80,7 @@ const CartDetails = (props) => {
             >
               Buy
             </button>
-            <h1>Total : ${Total.toFixed(2)}</h1>
+            <h1>Cart Total : ${Total.toFixed(2)}</h1>
           </div>
         )}
         {props.CartProducts.length === 0 && (

@@ -44,73 +44,18 @@ function SampleNextArrow(props) {
   );
 }
 const Main = () => {
-  //slider settings
-  const settings = {
-    dots: false,
-    lazyLoad: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    initialSlide: 2,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
 
-  const [Products, setProducts] = useState(null);
 
-  //init store
-  let StoreDataBase = getFirestore();
-
-  //collection ref
-  let BookCollection = collection(StoreDataBase, "Products");
-
-  const fetchProducts = async () => {
-    getDocs(BookCollection).then((snapshot) => {
-      let FetchedProducts = [];
-      snapshot.docs.forEach((doc) => {
-        FetchedProducts.push({ ...doc.data(), id: doc.id });
-      });
-      setProducts(FetchedProducts);
-    });
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
   return (
-    <div id="Home">
-      {Products === null ? (
-        <div className="flex w-full justify-center items-center">
-          <Iconify icon={"eos-icons:loading"} style={{ fontSize: "100px" }} />
+    <div id="Home" className="bg-[url('Assets/Images/bg.jpg')] bg-bottom bg-cover ">
+     <div className="bg-gradient-to-b from-[rgba(255,0,0,0)] to-[#000000] w-[100vw] max-w-[100%] overflow-hidden flex flex-col justify-center items-center gap-[20px] h-[400px]">
+          <div className="text-center text-white">
+            <h1 className="text-[25px] font-bold">Kickstreet Sneakers</h1>
+            <h2 className="text-[20px] font-normal">Unlock Your Sneaker Obsession!</h2>
+          </div>
+          <a href="#Men" className="bg-[#474554] flex items-center gap-[5px] text-white border border-[#474554] rounded-md px-[20px] py-[5px]"><p>Shop Now</p> <Iconify icon={"maki:arrow"} className="text-white"></Iconify> </a>
+          
         </div>
-      ) : (
-        <div className="w-[100vw] max-w-[100%] overflow-hidden">
-          <Slider {...settings}>
-            {Products.map((Product, index) => {
-              return (
-                <div
-                  key={index}
-                  className="relative flex justify-center items-center"
-                >
-                  <img
-                    className="w-full h-96"
-                    key={index}
-                    src={Product.productImage}
-                    alt={Product.productName}
-                  />
-                  <div className="absolute font-extrabold left-8 bottom-8">
-                    <h1 className="text-xl">{Product.productName}</h1>
-                    <h1 className="text-3xl">{Product.productDetails}</h1>
-                  </div>
-                </div>
-              );
-            })}
-          </Slider>
-        </div>
-      )}
     </div>
   );
 };
